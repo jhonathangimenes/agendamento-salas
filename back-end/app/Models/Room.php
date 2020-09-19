@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Type extends Model
+class Room extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'location_id'
     ];
 
-    static function getList(){
-        $types = DB::table('types')
+    static function getList($locationId){
+        $types = DB::table('rooms')
+            ->where('location_id', $locationId)
             ->orderBy('name', 'asc')
             ->get();
         return $types;

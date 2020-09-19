@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -62,5 +63,26 @@ class User extends Authenticatable implements JWTSubject
     public function type()
     {
         return $this->belongsTo('App\Models\Type');
+    }
+
+    static function getList(){
+        $meeting = DB::table('users')
+            ->join('sectors', 'users.sector_id', '=', 'sectors.id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->select('users.*', 'sectors.name as sector_name', 'types.name as type_name')
+            ->orderBy('name', 'asc')
+            ->get();
+        return $meeting;
+    }
+
+    static function getFind($userId) {
+        $user = DB::table('users')
+            ->where('users.id', $userId)
+            ->join('sectors', 'users.sector_id', '=', 'sectors.id')
+            ->join('types', 'users.type_id', '=', 'types.id')
+            ->select('users.id', 'users.email','users.name','sectors.name as sector_name', 'types.name as type_name')
+            ->first();
+
+        return $user;
     }
 }

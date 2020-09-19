@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -30,6 +31,13 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    public function show() {
+        $userId = auth('api')->user()->id;
+        $user = User::getFind($userId);
+
+        return response()->json($user);
     }
 
     protected function respondWithToken($token)

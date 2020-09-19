@@ -9,7 +9,7 @@ class SectorController extends Controller
 {
     public function index()
     {
-        $sector = Sector::all();
+        $sector = Sector::getList();
         return response()->json($sector);
     }
 

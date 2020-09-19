@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::getList();
         return response()->json($users);
     }
 
@@ -48,7 +48,6 @@ class UserController extends Controller
         }
 
         $user->fill($request->all());
-        $user->password = bcrypt($request->password);
         $user->save();
 
         return response()->json($user, 201);

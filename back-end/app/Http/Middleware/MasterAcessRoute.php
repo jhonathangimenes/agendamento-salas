@@ -22,7 +22,7 @@ class MasterAcessRoute
             if ($user->type->name === 'Master') {
                 return $next($request);
             } else {
-                return response()->json(['status' => 'Unauthorized']);
+                return response()->json(['status' => 'Unauthorized'], 401);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'Authorization Token not found']);

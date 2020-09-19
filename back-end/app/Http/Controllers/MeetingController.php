@@ -9,7 +9,7 @@ class MeetingController extends Controller
 {
     public function index()
     {
-        $meetings = Meeting::all();
+        $meetings = Meeting::getList();
         return response()->json($meetings);
     }
 
@@ -24,19 +24,19 @@ class MeetingController extends Controller
         if (Meeting::isMeetingToday($starDateTime, $user->id)) {
             return response()->json([
                 'status' => 'Meeting day limit'
-            ], 406);
+            ],406);
         }
 
         if ($meetingTime > 3600) {
             return response()->json([
                 'status' => 'Meeting time limit'
-            ], 406);
+            ],406);
         }
 
         if ($meetingTime < 0) {
             return response()->json([
                 'status' => 'End time cannot be less than start time'
-            ], 406);
+            ],406);
         }
         $meeting = new Meeting();
         $meeting->fill($request->all());
@@ -108,5 +108,34 @@ class MeetingController extends Controller
         }
 
         return response()->json($meeting->delete(), 204);
+    }
+
+    public function consultMeeting(Request $request) {
+        $user = auth('api')->user();
+
+        $starDateTime = date($request->start_date);
+
+        if (Meeting::isMeetingToday($starDateTime, $user->id)) {
+            return response()->json([
+                'status' => 'Meeting day limit'
+            ],409);
+        }
+
+        return response()->json(['status' => 'ok'], 200);
+    }
+
+    public function consultMeetingRoom(Request $request) {
+        $user = auth('api')->user();
+
+        $starDateTime = date($request->start_date);
+
+        if (Meeting::isMeetingRomm($request->start_date, $request->end_date, $request->room_id)) {
+            return response()->json([
+                'status' => 'There is a meeting for this room at this time'
+            ],409);
+        }
+
+
+        return response()->json(['status' => 'ok'], 200);
     }
 }
