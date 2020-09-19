@@ -35,3 +35,17 @@
 # yarn install
 
 # yarn serve --port 3000
+
+# Questões:
+
+# 1. O que são requisitos funcionais? Site 3 exemplos para este sistema;
+
+# R = Requesito vem apartir de uma solicitação de funcionalidade, espera-se que uma funcionalidade tenha varios requesitos.
+
+# Exemplos: Cadastrar usuário, Editar usuário, Excluir usuário.
+
+# 2. O que são requisitos não funcionais? Site 3 exemplos para este sistema;
+
+# R = São ações que deverem ser feitas no sistema mas não são feitas diretamente da funcionalidade e não tem visão do usuário.
+
+# Exemplos: Melhora de desempenho, Teste automatizados, segurança
