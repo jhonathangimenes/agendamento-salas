@@ -26,7 +26,7 @@
 
 # php artisan jwt:secret
 
-# php artisan migrate:fresh --seed
+# php artisan migrate --seed
 
 # php artisan serve
 
@@ -35,6 +35,8 @@
 # yarn install
 
 # yarn serve --port 3000
+
+# Primeiro usuário foi cadastrado no momento da "migrate" login: "admin@admin" senha: "admin"
 
 # Questões:
 
