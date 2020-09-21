@@ -13,7 +13,7 @@
         </b-form-group>
       </div>
       <div class="col-md-12 text-right">
-        <router-link to="/list-meetings" class="btn btn-danger mr-2" type="submit">Cancelar</router-link>
+        <router-link to="/list-sector" class="btn btn-danger mr-2" type="submit">Cancelar</router-link>
         <b-button type="submit" variant="primary">Entrar</b-button>
       </div>
     </div>

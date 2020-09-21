@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-right">
-      <router-link to="/create-meeting" class="btn btn-success mb-2" type="submit">Cadastrar Sector</router-link>
+      <router-link to="/create-sector" class="btn btn-success mb-2" type="submit">Cadastrar Sector</router-link>
     </div>
     <div class="table-responsive-lg">
       <table class="table">

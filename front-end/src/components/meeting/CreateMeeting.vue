@@ -86,8 +86,9 @@ export default {
       let end_date = new Date(`${this.date}T${this.end_time}`);
 
       let timeMeeting = end_date - start_date;
-
-      if (timeMeeting <= 3600000) {
+      if (timeMeeting < 0) {
+        alert("Data de encerramento não pode ser menor que data de início");
+      } else if (timeMeeting <= 3600000) {
         try {
           const response = await Service.consultMeeting(meeting);
           try {
